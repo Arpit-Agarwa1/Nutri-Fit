@@ -49,7 +49,11 @@ const ProductCard = ({ product, index = 0 }) => {
         <Link to={`/product/${product.slug}`}>
           <h3 className="product-card-title">{product.name}</h3>
         </Link>
+        {product.shortDescription && (
+          <p className="product-card-desc">{product.shortDescription}</p>
+        )}
         <p className="product-card-meta">
+          {product.rating > 0 && <span className="product-card-rating">★ {product.rating} • </span>}
           {product.protein} • {product.weight}
         </p>
         <div className="product-card-price">

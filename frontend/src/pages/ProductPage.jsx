@@ -4,6 +4,31 @@ import { productService } from '../services/api';
 import { useCart } from '../context/CartContext';
 import './ProductPage.css';
 
+/** Format nutrition object into table rows */
+const getNutritionRows = (nutrition) => {
+  if (!nutrition?.perServing || !nutrition?.per100g) return [];
+
+  const labels = [
+    ['calories', 'Calories (kcal)'],
+    ['protein', 'Protein (g)'],
+    ['carbohydrates', 'Carbohydrates (g)'],
+    ['dietaryFiber', 'Dietary Fiber (g)'],
+    ['naturalSugar', 'Natural Sugar (g)'],
+    ['addedSugar', 'Added Sugar (g)'],
+    ['totalFats', 'Total Fats (g)'],
+    ['saturatedFat', 'Saturated Fat (g)'],
+    ['transFat', 'Trans Fat (g)'],
+    ['cholesterol', 'Cholesterol (mg)'],
+    ['sodium', 'Sodium (mg)'],
+  ];
+
+  return labels.map(([key, label]) => ({
+    label,
+    serving: nutrition.perServing[key] ?? '-',
+    per100: nutrition.per100g[key] ?? '-',
+  }));
+};
+
 /** Single product detail page */
 const ProductPage = () => {
   const { slug } = useParams();
@@ -49,6 +74,8 @@ const ProductPage = () => {
     product.id.includes('mango') ||
     product.id.includes('preworkout');
 
+  const nutritionRows = getNutritionRows(product.nutrition);
+
   return (
     <div className="product-page">
       <div className="container">
@@ -71,7 +98,14 @@ const ProductPage = () => {
           <div className="product-info-section">
             {product.flavor && <span className="product-flavor-tag">{product.flavor}</span>}
             <h1>{product.name}</h1>
+            {product.tagline && <p className="product-tagline">{product.tagline}</p>}
             <p className="product-texture">{product.texture} Texture • {product.weight}</p>
+
+            {product.rating > 0 && (
+              <p className="product-rating">
+                ★ {product.rating} ({product.reviewCount} reviews)
+              </p>
+            )}
 
             <div className="product-stats">
               <span>💪 {product.protein}</span>
@@ -88,7 +122,7 @@ const ProductPage = () => {
             <p className="product-description">{product.description}</p>
 
             <ul className="product-features">
-              {product.features.map((feature) => (
+              {product.features?.map((feature) => (
                 <li key={feature}>✔ {feature}</li>
               ))}
             </ul>
@@ -111,6 +145,47 @@ const ProductPage = () => {
             </button>
           </div>
         </div>
+
+        {product.ingredients?.length > 0 && (
+          <section className="product-extra-section">
+            <h2>Ingredients</h2>
+            <p>{product.ingredients.join(', ')}</p>
+            {product.allergens?.length > 0 && (
+              <p className="product-allergens">
+                <strong>Allergens:</strong> {product.allergens.join(', ')}
+              </p>
+            )}
+          </section>
+        )}
+
+        {nutritionRows.length > 0 && (
+          <section className="product-extra-section">
+            <h2>Nutrition Facts</h2>
+            <p className="nutrition-serving-note">
+              Serving Size: {product.nutrition.servingSize}
+            </p>
+            <div className="product-nutrition-table-wrap">
+              <table className="product-nutrition-table">
+                <thead>
+                  <tr>
+                    <th>Nutrient</th>
+                    <th>Per Serving</th>
+                    <th>Per 100g</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {nutritionRows.map((row) => (
+                    <tr key={row.label}>
+                      <td>{row.label}</td>
+                      <td>{row.serving}</td>
+                      <td>{row.per100}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

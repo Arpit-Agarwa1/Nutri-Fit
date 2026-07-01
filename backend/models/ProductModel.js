@@ -4,7 +4,7 @@ import Product from '../schemas/Product.js';
 class ProductModel {
   /**
    * Get all products with optional filters
-   * @param {Object} filters - texture, flavor, search
+   * @param {Object} filters - texture, flavor, category, search
    * @returns {Promise<Array>} Filtered products
    */
   static async getAll(filters = {}) {
@@ -18,15 +18,26 @@ class ProductModel {
       query.flavor = new RegExp(`^${filters.flavor}$`, 'i');
     }
 
-    let products = await Product.find(query).lean();
+    if (filters.category) {
+      query.category = new RegExp(`^${filters.category}$`, 'i');
+    }
+
+    if (filters.featured === 'true') {
+      query.isFeatured = true;
+    }
+
+    let products = await Product.find(query).sort({ sortOrder: 1 }).lean();
 
     if (filters.search) {
       const term = filters.search.toLowerCase();
       products = products.filter(
         (p) =>
           p.name.toLowerCase().includes(term) ||
+          p.shortDescription?.toLowerCase().includes(term) ||
           p.description.toLowerCase().includes(term) ||
-          p.texture.toLowerCase().includes(term)
+          p.texture.toLowerCase().includes(term) ||
+          p.flavor?.toLowerCase().includes(term) ||
+          p.tags?.some((tag) => tag.toLowerCase().includes(term))
       );
     }
 

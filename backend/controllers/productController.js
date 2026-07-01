@@ -5,8 +5,8 @@ class ProductController {
   /** GET /api/products */
   static async getAll(req, res) {
     try {
-      const { texture, flavor, search } = req.query;
-      const products = await ProductModel.getAll({ texture, flavor, search });
+      const { texture, flavor, category, search, featured } = req.query;
+      const products = await ProductModel.getAll({ texture, flavor, category, search, featured });
       res.json({ success: true, data: products, count: products.length });
     } catch (error) {
       console.error('getAll products error:', error.message);

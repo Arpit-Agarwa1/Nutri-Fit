@@ -197,6 +197,70 @@
   padding: var(--space-11) var(--space-5);
 }
 
+.product-tagline {
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--space-2);
+}
+
+.product-rating {
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.product-extra-section {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.product-extra-section h2 {
+  margin-bottom: var(--space-3);
+  color: var(--blue);
+}
+
+.product-allergens {
+  margin-top: var(--space-3);
+  color: #c0392b;
+  font-size: 0.92rem;
+}
+
+.nutrition-serving-note {
+  color: var(--gray);
+  margin-bottom: var(--space-3);
+}
+
+.product-nutrition-table-wrap {
+  overflow-x: auto;
+}
+
+.product-nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-nutrition-table th,
+.product-nutrition-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.product-nutrition-table th {
+  background: var(--gray-light);
+  font-weight: 700;
+}
+
+.product-nutrition-table td:nth-child(2),
+.product-nutrition-table td:nth-child(3) {
+  text-align: center;
+  font-weight: 600;
+}
+
 .product-error h2 {
   margin-bottom: var(--grid-gap);
 }

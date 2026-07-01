@@ -1,6 +1,16 @@
 import OrderModel from '../models/OrderModel.js';
 import ProductModel from '../models/ProductModel.js';
 
+/** Normalize legacy and new shipping address shapes */
+const normalizeShippingAddress = (address = {}) => ({
+  addressLine1: address.addressLine1 || address.address || '',
+  addressLine2: address.addressLine2 || '',
+  city: address.city || '',
+  state: address.state || '',
+  pincode: address.pincode || '',
+  landmark: address.landmark || '',
+});
+
 /** Order controller — handles order placement */
 class OrderController {
   /** POST /api/orders */
@@ -47,6 +57,7 @@ class OrderController {
 
         orderItems.push({
           productId: product.id,
+          sku: product.sku,
           name: product.name,
           price: product.price,
           quantity,
@@ -57,8 +68,9 @@ class OrderController {
       const order = await OrderModel.create({
         customer,
         items: orderItems,
-        shippingAddress: shippingAddress || {},
+        shippingAddress: normalizeShippingAddress(shippingAddress),
         paymentMethod: paymentMethod || 'cod',
+        notes: req.body.notes || '',
         total,
       });
 

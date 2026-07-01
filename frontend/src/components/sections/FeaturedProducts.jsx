@@ -14,7 +14,7 @@ const FeaturedProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await productService.getAll();
+        const res = await productService.getAll({ featured: 'true' });
         setProducts(res.data.slice(0, 4));
       } catch (err) {
         setError(err.message);

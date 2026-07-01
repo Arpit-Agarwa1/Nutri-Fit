@@ -1,114 +1,10 @@
-/** Static product catalog — used by frontend and Vercel API */
-export const products = [
-  {
-    id: 'pb-smooth-1kg',
-    name: 'Smooth Peanut Butter',
-    slug: 'smooth-peanut-butter-1kg',
-    texture: 'Smooth',
-    description:
-      'A silky, easy-to-spread peanut butter that melts in your mouth. 3x smoother than other spreads — extremely creamy and ideal for spreading.',
-    price: 749,
-    originalPrice: 849,
-    weight: '1 Kg',
-    protein: '26g per 100g',
-    fiber: '5g per 100g',
-    features: ['High Protein', 'Zero Cholesterol', 'Premium Roasted Peanuts', '100% Vegetarian'],
-    inStock: true,
-    badge: 'Bestseller',
-    image: '/images/product-smooth.jpg',
-  },
-  {
-    id: 'pb-crunchy-1kg',
-    name: 'Crunchy Peanut Butter',
-    slug: 'crunchy-peanut-butter-1kg',
-    texture: 'Crunchy',
-    description:
-      'Packed with bits of premium-grade peanuts for an added crunch in every bite. Made with real peanut bits for those who love texture.',
-    price: 749,
-    originalPrice: 849,
-    weight: '1 Kg',
-    protein: '26g per 100g',
-    fiber: '5g per 100g',
-    features: ['Real Peanut Bits', 'High Protein', 'Zero Cholesterol', 'Premium Grade Peanuts'],
-    inStock: true,
-    badge: 'Popular',
-    image: '/images/product-crunchy.jpg',
-  },
-  {
-    id: 'pb-crispy-1kg',
-    name: 'Crispy Peanut Butter',
-    slug: 'crispy-peanut-butter-1kg',
-    texture: 'Crispy',
-    description:
-      'A unique crispy texture with premium roasted peanuts. Perfect for those who want something different from smooth or crunchy.',
-    price: 749,
-    originalPrice: 849,
-    weight: '1 Kg',
-    protein: '26g per 100g',
-    fiber: '5g per 100g',
-    features: ['Unique Crispy Texture', 'High Protein', 'Zero Cholesterol', 'Premium Roasted Peanuts'],
-    inStock: true,
-    badge: 'New',
-    image: '/images/product-crispy.jpg',
-  },
-  {
-    id: 'pb-mango-smooth',
-    name: 'Smooth Mango Peanut Butter',
-    slug: 'smooth-mango-peanut-butter',
-    texture: 'Smooth',
-    flavor: 'Mango',
-    description:
-      "A refreshing fruity twist you'll love. Smooth mango-infused peanut butter combining tropical flavor with premium nutrition.",
-    price: 799,
-    originalPrice: 899,
-    weight: '1 Kg',
-    protein: '26g per 100g',
-    fiber: '5g per 100g',
-    features: ['Mango Flavor', 'High Protein', 'Zero Cholesterol', 'Refreshing Twist'],
-    inStock: true,
-    badge: 'Flavored',
-    image: '/images/product-mango.jpg',
-  },
-  {
-    id: 'pb-dark-chocolate-crunchy',
-    name: 'Crunchy Dark Chocolate Peanut Butter',
-    slug: 'crunchy-dark-chocolate-peanut-butter',
-    texture: 'Crunchy',
-    flavor: 'Dark Chocolate',
-    description:
-      'Healthy & chocolatey — the perfect blend of premium roasted peanuts and rich dark chocolate. Indulgence that feels good, not guilty.',
-    price: 849,
-    originalPrice: 949,
-    weight: '1 Kg',
-    protein: '26g per 100g',
-    fiber: '5g per 100g',
-    features: ['Dark Chocolate', 'High Protein', 'Zero Cholesterol', 'Healthy & Chocolatey'],
-    inStock: true,
-    badge: 'Premium',
-    image: '/images/product-chocolate.jpg',
-  },
-  {
-    id: 'pb-preworkout',
-    name: 'Pre-Workout Peanut Butter Shake Mix',
-    slug: 'pre-workout-shake',
-    texture: 'Smooth',
-    flavor: 'Pre-Workout',
-    description:
-      'Fuel your intense workouts with our specially formulated pre-workout peanut butter shake mix. High protein energy booster.',
-    price: 899,
-    originalPrice: 999,
-    weight: '500g',
-    protein: '30g per 100g',
-    fiber: '5g per 100g',
-    features: ['Pre-Workout Fuel', 'High Protein', 'Energy Booster', 'Gym Friendly'],
-    inStock: true,
-    badge: 'Fitness',
-    image: '/images/product-preworkout.jpg',
-  },
-];
+import catalog from './products.json';
+
+/** Static product catalog — single source of truth for frontend fallback */
+export const products = catalog;
 
 /**
- * Filter products by texture, flavor, or search query
+ * Filter products by texture, flavor, category, or search query
  * @param {Object} filters
  * @returns {Array}
  */
@@ -127,17 +23,26 @@ export const filterProducts = (filters = {}) => {
     );
   }
 
+  if (filters.category) {
+    result = result.filter(
+      (p) => p.category?.toLowerCase() === filters.category.toLowerCase()
+    );
+  }
+
   if (filters.search) {
     const query = filters.search.toLowerCase();
     result = result.filter(
       (p) =>
         p.name.toLowerCase().includes(query) ||
+        p.shortDescription?.toLowerCase().includes(query) ||
         p.description.toLowerCase().includes(query) ||
-        p.texture.toLowerCase().includes(query)
+        p.texture.toLowerCase().includes(query) ||
+        p.flavor?.toLowerCase().includes(query) ||
+        p.tags?.some((tag) => tag.toLowerCase().includes(query))
     );
   }
 
-  return result;
+  return result.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
 };
 
 /** Get product by ID */
@@ -145,3 +50,9 @@ export const getProductById = (id) => products.find((p) => p.id === id) || null;
 
 /** Get product by slug */
 export const getProductBySlug = (slug) => products.find((p) => p.slug === slug) || null;
+
+/** Get featured products for homepage */
+export const getFeaturedProducts = () =>
+  products
+    .filter((p) => p.isFeatured)
+    .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));

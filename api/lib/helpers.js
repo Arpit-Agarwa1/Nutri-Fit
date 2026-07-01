@@ -50,8 +50,11 @@ export const getProducts = async (filters = {}) => {
       products = products.filter(
         (p) =>
           p.name.toLowerCase().includes(term) ||
+          p.shortDescription?.toLowerCase().includes(term) ||
           p.description.toLowerCase().includes(term) ||
-          p.texture.toLowerCase().includes(term)
+          p.texture.toLowerCase().includes(term) ||
+          p.flavor?.toLowerCase().includes(term) ||
+          p.tags?.some((tag) => tag.toLowerCase().includes(term))
       );
     }
 

@@ -1,6 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
 import Order from '../schemas/Order.js';
 
+/** Generate human-readable order number */
+const generateOrderNumber = () => {
+  const date = new Date();
+  const ymd = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0'),
+  ].join('');
+  const suffix = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return `NF-${ymd}-${suffix}`;
+};
+
 /** Order model — MongoDB persistence */
 class OrderModel {
   /** Get all orders */
@@ -9,6 +21,7 @@ class OrderModel {
     return orders.map(({ _id, ...rest }) => ({
       ...rest,
       createdAt: rest.createdAt ? new Date(rest.createdAt).toISOString() : undefined,
+      updatedAt: rest.updatedAt ? new Date(rest.updatedAt).toISOString() : undefined,
     }));
   }
 
@@ -20,6 +33,7 @@ class OrderModel {
     return {
       ...rest,
       createdAt: rest.createdAt ? new Date(rest.createdAt).toISOString() : undefined,
+      updatedAt: rest.updatedAt ? new Date(rest.updatedAt).toISOString() : undefined,
     };
   }
 
@@ -31,6 +45,7 @@ class OrderModel {
   static async create(orderData) {
     const order = await Order.create({
       id: uuidv4(),
+      orderNumber: generateOrderNumber(),
       ...orderData,
       status: 'pending',
     });
