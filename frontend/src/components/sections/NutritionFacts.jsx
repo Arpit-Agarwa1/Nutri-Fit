@@ -29,7 +29,7 @@ const NutritionFacts = () => {
         <AnimateOnScroll animation="scale" delay={150}>
           <div className="nutrition-layout">
             <img
-              src="/images/product-nutrition.png"
+              src="/images/product-nutrition.jpg"
               alt="NutriFit Nutrition Label"
               className="nutrition-image"
             />

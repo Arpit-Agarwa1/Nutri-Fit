@@ -45,7 +45,7 @@ const HomePage = () => {
       <section className="showcase-section">
         <div className="container showcase-grid">
           <AnimateOnScroll animation="fade-left">
-            <img src="/images/product-benefits.png" alt="NutriFit Bharat Benefits" className="showcase-img" />
+            <img src="/images/benefits-page.jpg" alt="NutriFit Bharat Benefits" className="showcase-img" />
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-right">
             <div className="showcase-content">
