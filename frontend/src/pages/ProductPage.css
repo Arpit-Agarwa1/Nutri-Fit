@@ -201,7 +201,7 @@
   margin-bottom: var(--grid-gap);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .product-detail {
     grid-template-columns: 1fr;
     gap: var(--grid-gap-lg);
@@ -212,12 +212,26 @@
   }
 
   .product-image-large {
-    min-height: 320px;
-    max-width: 480px;
+    min-height: 280px;
+    max-width: 100%;
     margin: 0 auto;
+    padding: var(--space-5);
+  }
+
+  .product-detail-img {
+    max-height: 280px;
   }
 
   .product-features {
     grid-template-columns: 1fr;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .price-large {
+    font-size: 1.75rem;
   }
 }

@@ -149,4 +149,16 @@
     grid-template-columns: 1fr;
     gap: var(--grid-gap-lg);
   }
+
+  .checkout-summary {
+    position: static;
+  }
+
+  .checkout-form {
+    padding: var(--space-5);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }

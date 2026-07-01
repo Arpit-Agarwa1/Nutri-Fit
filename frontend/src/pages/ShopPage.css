@@ -102,11 +102,34 @@
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 768px) {
+  .shop-header {
+    padding: var(--space-8) 0;
+  }
+
+  .shop-content {
+    padding: var(--space-7) 0 var(--page-y-bottom);
+  }
+
+  .filter-tab {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.85rem;
+  }
+
+  .shop-content .products-grid {
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
   .shop-content .products-grid {
     grid-template-columns: 1fr;
-    max-width: 380px;
+    max-width: 340px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .search-input {
+    font-size: 16px; /* prevents iOS zoom on focus */
   }
 }

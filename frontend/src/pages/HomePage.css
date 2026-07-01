@@ -177,8 +177,16 @@
 }
 
 @media (max-width: 480px) {
+  .showcase-products {
+    gap: var(--space-4);
+  }
+
   .showcase-products img {
-    width: 100px;
-    height: 150px;
+    width: 90px;
+    height: 130px;
+  }
+
+  .textures-banner {
+    border-width: 2px;
   }
 }

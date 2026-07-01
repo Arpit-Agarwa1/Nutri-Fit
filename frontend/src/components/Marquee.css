@@ -33,3 +33,17 @@
 .marquee-section:hover .marquee-track {
   animation-play-state: paused;
 }
+
+@media (max-width: 768px) {
+  .marquee-item {
+    gap: var(--space-5);
+    padding: 0 var(--space-5);
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

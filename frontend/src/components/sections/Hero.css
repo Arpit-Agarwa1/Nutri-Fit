@@ -109,7 +109,6 @@
 .hero-features span {
   font-size: 0.88rem;
   font-weight: 500;
-  white-space: nowrap;
 }
 
 .hero-actions {
@@ -230,7 +229,24 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: var(--space-7) 0 var(--space-11);
+    padding: var(--space-6) 0 var(--space-10);
+  }
+
+  .hero-title {
+    font-size: clamp(1.65rem, 7vw, 2rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .hero-image-wrap {
@@ -240,12 +256,20 @@
   .hero-stats-float {
     flex-wrap: wrap;
     justify-content: center;
-    padding: var(--space-3) var(--space-5);
-    margin-top: calc(var(--space-5) * -1);
+    width: calc(100% - var(--space-4));
+    padding: var(--space-3) var(--space-4);
+    margin-top: calc(var(--space-4) * -1);
+    border-radius: var(--radius-lg);
   }
 
   .stat-chip {
     border-right: none;
-    padding: var(--space-1) var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    flex: 1 1 30%;
+    min-width: 70px;
+  }
+
+  .stat-chip strong {
+    font-size: 1.1rem;
   }
 }

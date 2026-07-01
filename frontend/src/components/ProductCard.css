@@ -139,3 +139,18 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 480px) {
+  .product-card-title {
+    min-height: auto;
+    font-size: 0.95rem;
+  }
+
+  .product-card-body {
+    padding: var(--space-4);
+  }
+
+  .price-current {
+    font-size: 1.15rem;
+  }
+}

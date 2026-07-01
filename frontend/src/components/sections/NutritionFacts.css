@@ -82,7 +82,17 @@
   }
 
   .nutrition-image-wrap {
-    max-width: 320px;
+    max-width: 280px;
     margin: 0 auto;
+  }
+
+  .nutrition-table th,
+  .nutrition-table td {
+    padding: var(--space-3);
+    font-size: 0.82rem;
+  }
+
+  .nutrition-table-wrapper {
+    -webkit-overflow-scrolling: touch;
   }
 }
