@@ -1,7 +1,13 @@
-import { buildOrderItems, generateId, setCorsHeaders, handleOptions } from '../lib/helpers.js';
+import {
+  buildOrderItems,
+  generateId,
+  saveOrder,
+  setCorsHeaders,
+  handleOptions,
+} from '../lib/helpers.js';
 
 /** POST /api/orders — create order */
-export default function handler(req, res) {
+export default async function handler(req, res) {
   setCorsHeaders(res);
 
   if (req.method === 'OPTIONS') return handleOptions(req, res);
@@ -27,15 +33,21 @@ export default function handler(req, res) {
       });
     }
 
-    const { orderItems, total } = buildOrderItems(items);
+    const { orderItems, total } = await buildOrderItems(items);
 
-    const order = {
-      id: generateId(),
+    const orderPayload = {
       customer,
       items: orderItems,
       shippingAddress: shippingAddress || {},
       paymentMethod: paymentMethod || 'cod',
       total,
+    };
+
+    const saved = await saveOrder(orderPayload);
+
+    const order = saved || {
+      id: generateId(),
+      ...orderPayload,
       status: 'pending',
       createdAt: new Date().toISOString(),
     };

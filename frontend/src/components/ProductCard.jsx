@@ -16,9 +16,18 @@ const ProductCard = ({ product, index = 0 }) => {
     Crispy: 'badge-orange',
   };
 
+  const isJarProduct =
+    Boolean(product.flavor) ||
+    product.id.includes('chocolate') ||
+    product.id.includes('mango') ||
+    product.id.includes('preworkout');
+
   return (
     <div className="product-card" style={{ animationDelay: `${index * 0.1}s` }}>
-      <Link to={`/product/${product.slug}`} className="product-card-image">
+      <Link
+        to={`/product/${product.slug}`}
+        className={`product-card-image ${isJarProduct ? 'is-jar' : ''}`}
+      >
         <img
           src={product.image}
           alt={product.name}

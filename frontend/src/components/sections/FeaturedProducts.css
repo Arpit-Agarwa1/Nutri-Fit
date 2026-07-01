@@ -5,12 +5,18 @@
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 40px;
+  gap: var(--grid-gap);
+  margin-bottom: var(--subtitle-gap);
+  align-items: stretch;
 }
 
-.products-grid > div {
+.products-grid > .aos {
   height: 100%;
+  display: flex;
+}
+
+.products-grid > .aos > .product-card {
+  width: 100%;
 }
 
 .featured-cta {
@@ -20,17 +26,20 @@
 .error-msg {
   text-align: center;
   color: #e53935;
-  padding: 20px;
+  padding: var(--space-5);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .products-grid {
     grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

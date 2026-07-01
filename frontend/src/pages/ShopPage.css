@@ -5,56 +5,63 @@
 .shop-header {
   background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
   color: white;
-  padding: 48px 0;
+  padding: var(--space-10) 0;
   text-align: center;
 }
 
 .shop-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 8px;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: var(--space-2);
 }
 
 .shop-header p {
-  opacity: 0.9;
-  font-size: 1.1rem;
+  opacity: 0.92;
+  font-size: 1.05rem;
 }
 
 .shop-content {
-  padding: 40px 20px 80px;
+  padding: var(--space-9) 0 var(--page-y-bottom);
 }
 
 .shop-filters {
-  margin-bottom: 32px;
+  margin-bottom: var(--grid-gap-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--stack-md);
 }
 
 .search-input {
   width: 100%;
-  max-width: 400px;
-  padding: 14px 20px;
+  max-width: 420px;
+  padding: var(--space-4) var(--space-6);
   border: 2px solid #eee;
   border-radius: 50px;
   font-size: 1rem;
   font-family: inherit;
-  margin-bottom: 16px;
   transition: var(--transition);
+  text-align: center;
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(255, 128, 48, 0.15);
 }
 
 .filter-tabs {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .filter-tab {
-  padding: 10px 24px;
+  padding: var(--space-3) var(--space-6);
   border-radius: 50px;
   background: var(--gray-light);
   font-weight: 500;
+  font-size: 0.92rem;
   transition: var(--transition);
 }
 
@@ -66,21 +73,27 @@
 
 .product-count {
   color: var(--gray);
-  margin-bottom: 20px;
+  margin-bottom: var(--grid-gap);
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .no-products {
   text-align: center;
-  padding: 60px;
+  padding: var(--space-10) var(--space-5);
   color: var(--gray);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .shop-content .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.shop-content .products-grid > .product-card {
+  width: 100%;
 }
 
 @media (max-width: 992px) {
@@ -89,8 +102,11 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .shop-content .products-grid {
     grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

@@ -2,52 +2,52 @@
   min-height: 70vh;
   display: flex;
   align-items: center;
-  padding: 60px 0;
+  padding: var(--space-10) 0;
 }
 
 .success-content {
   text-align: center;
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--stack-md);
 }
 
 .success-icon {
   font-size: 4rem;
-  margin-bottom: 16px;
 }
 
 .success-content h1 {
   font-size: 2rem;
-  margin-bottom: 8px;
   color: var(--green);
 }
 
 .success-content > p {
   color: var(--gray);
-  margin-bottom: 24px;
 }
 
 .order-details {
   background: var(--gray-light);
-  padding: 24px;
+  padding: var(--space-6);
   border-radius: var(--radius);
-  margin-bottom: 24px;
   text-align: left;
-}
-
-.order-details p {
-  margin-bottom: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
 .success-note {
   font-size: 0.95rem;
   color: var(--gray);
-  margin-bottom: 32px;
   line-height: 1.6;
 }
 
 .success-actions {
   display: flex;
-  gap: 16px;
+  gap: var(--stack-md);
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: var(--space-2);
 }

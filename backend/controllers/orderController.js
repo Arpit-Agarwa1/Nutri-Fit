@@ -1,10 +1,10 @@
 import OrderModel from '../models/OrderModel.js';
 import ProductModel from '../models/ProductModel.js';
 
-/** Order controller - handles order placement */
+/** Order controller — handles order placement */
 class OrderController {
   /** POST /api/orders */
-  static create(req, res) {
+  static async create(req, res) {
     try {
       const { customer, items, shippingAddress, paymentMethod } = req.body;
 
@@ -22,12 +22,11 @@ class OrderController {
         });
       }
 
-      // Validate products and calculate total
       let total = 0;
       const orderItems = [];
 
       for (const item of items) {
-        const product = ProductModel.getById(item.productId);
+        const product = await ProductModel.getById(item.productId);
 
         if (!product) {
           return res.status(400).json({
@@ -55,7 +54,7 @@ class OrderController {
         });
       }
 
-      const order = OrderModel.create({
+      const order = await OrderModel.create({
         customer,
         items: orderItems,
         shippingAddress: shippingAddress || {},
@@ -69,14 +68,15 @@ class OrderController {
         data: order,
       });
     } catch (error) {
+      console.error('create order error:', error.message);
       res.status(500).json({ success: false, message: 'Failed to create order' });
     }
   }
 
   /** GET /api/orders/:id */
-  static getById(req, res) {
+  static async getById(req, res) {
     try {
-      const order = OrderModel.getById(req.params.id);
+      const order = await OrderModel.getById(req.params.id);
 
       if (!order) {
         return res.status(404).json({ success: false, message: 'Order not found' });
@@ -84,6 +84,7 @@ class OrderController {
 
       res.json({ success: true, data: order });
     } catch (error) {
+      console.error('getById order error:', error.message);
       res.status(500).json({ success: false, message: 'Failed to fetch order' });
     }
   }

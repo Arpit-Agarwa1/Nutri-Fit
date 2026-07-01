@@ -26,9 +26,16 @@ const CartPage = () => {
 
         <div className="cart-layout">
           <div className="cart-items">
-            {cartItems.map((item) => (
+            {cartItems.map((item) => {
+              const isJarProduct =
+                Boolean(item.flavor) ||
+                item.id.includes('chocolate') ||
+                item.id.includes('mango') ||
+                item.id.includes('preworkout');
+
+              return (
               <div key={item.id} className="cart-item">
-                <div className="cart-item-image">
+                <div className={`cart-item-image ${isJarProduct ? 'is-jar' : ''}`}>
                   <img src={item.image} alt={item.name} />
                 </div>
                 <div className="cart-item-info">
@@ -52,7 +59,8 @@ const CartPage = () => {
                   ✕
                 </button>
               </div>
-            ))}
+            );
+            })}
           </div>
 
           <div className="cart-summary">

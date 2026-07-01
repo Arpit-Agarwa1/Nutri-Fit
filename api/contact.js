@@ -1,7 +1,12 @@
-import { setCorsHeaders, handleOptions } from '../lib/helpers.js';
+import {
+  saveContact,
+  generateId,
+  setCorsHeaders,
+  handleOptions,
+} from '../lib/helpers.js';
 
 /** POST /api/contact — submit contact form */
-export default function handler(req, res) {
+export default async function handler(req, res) {
   setCorsHeaders(res);
 
   if (req.method === 'OPTIONS') return handleOptions(req, res);
@@ -27,11 +32,21 @@ export default function handler(req, res) {
     });
   }
 
-  return res.status(201).json({
-    success: true,
-    message: 'Thank you! We will get back to you soon.',
-    data: {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-    },
-  });
+  try {
+    const saved = await saveContact({
+      name,
+      email,
+      phone: phone || '',
+      subject: subject || 'General Inquiry',
+      message,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Thank you! We will get back to you soon.',
+      data: { id: saved?.id || generateId() },
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Failed to submit contact form' });
+  }
 }

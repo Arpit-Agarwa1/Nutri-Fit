@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: var(--header-height);
 }
 
 .navbar-logo img {
@@ -30,7 +30,7 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: var(--space-7);
 }
 
 .navbar-links a {
@@ -48,7 +48,7 @@
 .navbar-links a.active::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: calc(var(--space-1) * -1);
   left: 0;
   right: 0;
   height: 2px;
@@ -59,12 +59,12 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--stack-md);
 }
 
 .cart-btn {
   position: relative;
-  padding: 8px;
+  padding: var(--space-2);
   color: var(--dark);
   transition: var(--transition);
 }
@@ -90,16 +90,16 @@
 }
 
 .navbar-cta {
-  padding: 10px 24px;
+  padding: var(--space-3) var(--space-6);
   font-size: 0.9rem;
 }
 
 .menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--space-1);
   background: none;
-  padding: 8px;
+  padding: var(--space-2);
 }
 
 .menu-toggle span {
@@ -125,13 +125,13 @@
 @media (max-width: 768px) {
   .navbar-links {
     position: fixed;
-    top: 80px;
+    top: var(--header-height);
     left: 0;
     right: 0;
     background: white;
     flex-direction: column;
-    padding: 24px;
-    gap: 20px;
+    padding: var(--space-6);
+    gap: var(--space-5);
     box-shadow: var(--shadow);
     transform: translateY(-120%);
     opacity: 0;

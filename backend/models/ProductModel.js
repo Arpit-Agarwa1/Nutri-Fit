@@ -1,50 +1,52 @@
-import { readData } from '../config/database.js';
+import Product from '../schemas/Product.js';
 
-/** Product model - handles product data access */
+/** Product model — MongoDB data access */
 class ProductModel {
   /**
    * Get all products with optional filters
    * @param {Object} filters - texture, flavor, search
-   * @returns {Array} Filtered products
+   * @returns {Promise<Array>} Filtered products
    */
-  static getAll(filters = {}) {
-    let products = readData('products.json');
+  static async getAll(filters = {}) {
+    const query = {};
 
     if (filters.texture) {
-      products = products.filter(
-        (p) => p.texture.toLowerCase() === filters.texture.toLowerCase()
-      );
+      query.texture = new RegExp(`^${filters.texture}$`, 'i');
     }
 
     if (filters.flavor) {
-      products = products.filter(
-        (p) => p.flavor?.toLowerCase() === filters.flavor.toLowerCase()
-      );
+      query.flavor = new RegExp(`^${filters.flavor}$`, 'i');
     }
+
+    let products = await Product.find(query).lean();
 
     if (filters.search) {
-      const query = filters.search.toLowerCase();
+      const term = filters.search.toLowerCase();
       products = products.filter(
         (p) =>
-          p.name.toLowerCase().includes(query) ||
-          p.description.toLowerCase().includes(query) ||
-          p.texture.toLowerCase().includes(query)
+          p.name.toLowerCase().includes(term) ||
+          p.description.toLowerCase().includes(term) ||
+          p.texture.toLowerCase().includes(term)
       );
     }
 
-    return products;
+    return products.map(({ _id, ...rest }) => rest);
   }
 
-  /** Get single product by ID */
-  static getById(id) {
-    const products = readData('products.json');
-    return products.find((p) => p.id === id) || null;
+  /** Get single product by business ID */
+  static async getById(id) {
+    const product = await Product.findOne({ id }).lean();
+    if (!product) return null;
+    const { _id, ...rest } = product;
+    return rest;
   }
 
   /** Get single product by slug */
-  static getBySlug(slug) {
-    const products = readData('products.json');
-    return products.find((p) => p.slug === slug) || null;
+  static async getBySlug(slug) {
+    const product = await Product.findOne({ slug }).lean();
+    if (!product) return null;
+    const { _id, ...rest } = product;
+    return rest;
   }
 }
 

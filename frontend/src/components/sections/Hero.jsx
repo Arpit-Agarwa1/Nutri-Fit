@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { heroProduct } from '../../data/productImages';
+import { heroMain } from '../../data/productImages';
 import './Hero.css';
 
 /** Hero section - main landing banner */
@@ -14,7 +14,7 @@ const Hero = () => {
 
       <div className="container hero-inner">
         <div className="hero-content">
-          <span className="hero-badge animate-fade-in-down">India&apos;s Premium Peanut Butter</span>
+          <span className="hero-badge animate-fade-in-down">India&apos;s #1 Peanut Butter Brand</span>
           <h1 className="hero-title animate-fade-in-down" style={{ animationDelay: '0.1s' }}>
             The Peanut Butter That{' '}
             <span className="text-orange">Powers</span>{' '}
@@ -43,13 +43,13 @@ const Hero = () => {
         </div>
 
         <div className="hero-visual animate-bounce-in">
-          <div className="hero-image-wrap animate-float-slow animate-pulse-glow">
+          <div className="hero-image-wrap animate-float-slow">
             <img
-              src={heroProduct}
+              src={heroMain}
               alt="NutriFit Bharat Premium Peanut Butter"
               className="hero-product-img"
-              width={723}
-              height={920}
+              width={900}
+              height={600}
             />
           </div>
           <div className="hero-stats-float">

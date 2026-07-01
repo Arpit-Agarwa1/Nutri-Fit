@@ -1,8 +1,11 @@
-import { getProductById } from '../lib/helpers.js';
-import { setCorsHeaders, handleOptions } from '../lib/helpers.js';
+import {
+  fetchProductById,
+  setCorsHeaders,
+  handleOptions,
+} from '../../lib/helpers.js';
 
 /** GET /api/products/:id */
-export default function handler(req, res) {
+export default async function handler(req, res) {
   setCorsHeaders(res);
 
   if (req.method === 'OPTIONS') return handleOptions(req, res);
@@ -11,12 +14,16 @@ export default function handler(req, res) {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
-  const { id } = req.query;
-  const product = getProductById(id);
+  try {
+    const { id } = req.query;
+    const product = await fetchProductById(id);
 
-  if (!product) {
-    return res.status(404).json({ success: false, message: 'Product not found' });
+    if (!product) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+
+    return res.status(200).json({ success: true, data: product });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Failed to fetch product' });
   }
-
-  return res.status(200).json({ success: true, data: product });
 }

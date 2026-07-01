@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import AnimateOnScroll from '../components/AnimateOnScroll';
+import { brandBanner } from '../data/productImages';
 import './AboutPage.css';
 
 /** About page with brand story from brochure */
@@ -29,15 +31,32 @@ const AboutPage = () => {
   return (
     <div className="about-page">
       <div className="about-hero">
-        <div className="container">
-          <h1>About NutriFit Bharat</h1>
-          <p className="about-tagline">Your Fitness, Our Nutrition</p>
+        <div className="container about-hero-inner">
+          <AnimateOnScroll animation="fade-left">
+            <div className="about-hero-text">
+              <h1>About NutriFit Bharat</h1>
+              <p className="about-tagline">Your Fitness, Our Nutrition</p>
+              <p className="about-hero-desc">
+                Premium peanut butter crafted in Jaipur with 100% roasted peanuts,
+                high protein, and zero compromise on taste.
+              </p>
+            </div>
+          </AnimateOnScroll>
+          <AnimateOnScroll animation="fade-right" delay={150}>
+            <div className="about-hero-visual">
+              <img
+                src={brandBanner}
+                alt="NutriFit Bharat Brand"
+                className="about-brand-banner"
+              />
+            </div>
+          </AnimateOnScroll>
         </div>
       </div>
 
       <div className="container about-content">
         <section className="about-section">
-          <h2>Born in Jaipur, Baked for India</h2>
+          <h2>Born in Jaipur, Made for India</h2>
           <p>
             Born in Jaipur, Rajasthan, NutriFit Bharat believes that healthy food should
             never be boring. Our goal is simple — create premium-quality peanut butter

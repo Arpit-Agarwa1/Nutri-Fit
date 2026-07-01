@@ -1,30 +1,29 @@
-import { readData, writeData } from '../config/database.js';
 import { v4 as uuidv4 } from 'uuid';
+import Contact from '../schemas/Contact.js';
 
-/** Contact model - handles contact form submissions */
+/** Contact model — MongoDB persistence */
 class ContactModel {
   /** Get all contact submissions */
-  static getAll() {
-    return readData('contacts.json');
+  static async getAll() {
+    const contacts = await Contact.find().sort({ createdAt: -1 }).lean();
+    return contacts.map(({ _id, ...rest }) => ({
+      ...rest,
+      createdAt: rest.createdAt ? new Date(rest.createdAt).toISOString() : undefined,
+    }));
   }
 
   /**
    * Create a new contact submission
    * @param {Object} contactData - name, email, phone, message
-   * @returns {Object} Created contact record
+   * @returns {Promise<Object>} Created contact record
    */
-  static create(contactData) {
-    const contacts = readData('contacts.json');
-
-    const contact = {
+  static async create(contactData) {
+    const contact = await Contact.create({
       id: uuidv4(),
       ...contactData,
-      createdAt: new Date().toISOString(),
-    };
+    });
 
-    contacts.push(contact);
-    writeData('contacts.json', contacts);
-    return contact;
+    return contact.toJSON();
   }
 }
 

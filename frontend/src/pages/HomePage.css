@@ -1,5 +1,5 @@
 .problem-section {
-  padding: 80px 0;
+  padding: var(--section-y) 0;
   background: linear-gradient(135deg, var(--orange) 0%, #ff6b00 100%);
   color: white;
   overflow: hidden;
@@ -7,111 +7,178 @@
 
 .problem-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--split-gap);
   align-items: center;
 }
 
+.problem-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-lg);
+}
+
 .problem-content h2 {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  line-height: 1.3;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  line-height: 1.35;
 }
 
 .problem-content p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   opacity: 0.95;
-  line-height: 1.7;
+  line-height: 1.75;
+  max-width: 480px;
 }
 
-.problem-image {
-  position: relative;
+.problem-visual {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.problem-image img {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
+.textures-banner {
+  width: 100%;
+  max-width: 560px;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 4px solid rgba(255, 255, 255, 0.3);
-}
-
-.problem-img-secondary {
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-  width: 180px !important;
-  height: 180px !important;
-  animation: float 5s ease-in-out infinite;
-  animation-delay: 1.5s;
-}
-
-.problem-image img:first-child {
-  animation: float 4s ease-in-out infinite;
-  z-index: 1;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.25);
 }
 
 .showcase-section {
-  padding: 80px 0;
-  background: white;
+  padding: var(--section-y) 0;
+  background: var(--gray-light);
 }
 
 .showcase-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: var(--split-gap);
+  align-items: center;
+}
+
+.showcase-image-wrap {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .showcase-img {
   width: 100%;
+  max-width: 540px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  transition: transform 0.5s ease;
 }
 
-.showcase-img:hover {
-  transform: scale(1.02);
+.showcase-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-lg);
+}
+
+.showcase-label {
+  display: inline-block;
+  width: fit-content;
+  background: rgba(255, 128, 48, 0.12);
+  color: var(--orange);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .showcase-content h2 {
-  font-size: 2rem;
-  margin-bottom: 16px;
+  font-size: clamp(1.6rem, 3vw, 2rem);
   color: var(--dark);
+  line-height: 1.3;
 }
 
 .showcase-content p {
   color: var(--gray);
-  line-height: 1.7;
-  margin-bottom: 24px;
+  line-height: 1.75;
+  font-size: 1rem;
 }
 
-.showcase-content ul li {
-  padding: 8px 0;
+.showcase-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.showcase-list li {
+  padding: var(--space-3) 0;
   font-weight: 600;
   color: var(--green-dark);
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-@media (max-width: 768px) {
+.showcase-list li::before {
+  content: '✔';
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.showcase-products {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-end;
+}
+
+.showcase-products img {
+  width: 120px;
+  height: 180px;
+  object-fit: contain;
+  object-position: bottom;
+  background: white;
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.showcase-products img:hover {
+  transform: translateY(-6px);
+}
+
+@media (max-width: 992px) {
   .problem-inner,
   .showcase-grid {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: var(--grid-gap-lg);
   }
 
-  .problem-content h2 {
-    font-size: 1.5rem;
+  .problem-content {
+    align-items: center;
   }
 
-  .problem-img-secondary {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: -40px;
-    margin-left: 60px;
+  .problem-content p {
+    max-width: 100%;
+  }
+
+  .showcase-content {
+    align-items: center;
+  }
+
+  .showcase-list {
+    width: 100%;
+    max-width: 360px;
+    text-align: left;
+  }
+
+  .showcase-products {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-products img {
+    width: 100px;
+    height: 150px;
   }
 }

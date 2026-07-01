@@ -43,6 +43,12 @@ const ProductPage = () => {
     addToCart(product, quantity);
   };
 
+  const isJarProduct =
+    Boolean(product.flavor) ||
+    product.id.includes('chocolate') ||
+    product.id.includes('mango') ||
+    product.id.includes('preworkout');
+
   return (
     <div className="product-page">
       <div className="container">
@@ -52,7 +58,7 @@ const ProductPage = () => {
 
         <div className="product-detail">
           <div className="product-image-section">
-            <div className="product-image-large">
+            <div className={`product-image-large ${isJarProduct ? 'is-jar' : ''}`}>
               <img
                 src={product.image}
                 alt={product.name}

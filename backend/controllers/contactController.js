@@ -1,9 +1,9 @@
 import ContactModel from '../models/ContactModel.js';
 
-/** Contact controller - handles contact form submissions */
+/** Contact controller — handles contact form submissions */
 class ContactController {
   /** POST /api/contact */
-  static create(req, res) {
+  static async create(req, res) {
     try {
       const { name, email, phone, message, subject } = req.body;
 
@@ -22,7 +22,7 @@ class ContactController {
         });
       }
 
-      const contact = ContactModel.create({
+      const contact = await ContactModel.create({
         name,
         email,
         phone: phone || '',
@@ -36,6 +36,7 @@ class ContactController {
         data: { id: contact.id },
       });
     } catch (error) {
+      console.error('create contact error:', error.message);
       res.status(500).json({ success: false, message: 'Failed to submit contact form' });
     }
   }

@@ -29,11 +29,13 @@ const NutritionFacts = () => {
         </AnimateOnScroll>
         <AnimateOnScroll animation="scale" delay={150}>
           <div className="nutrition-layout">
-            <img
-              src={nutritionImage}
-              alt="NutriFit Nutrition Label"
-              className="nutrition-image"
-            />
+            <div className="nutrition-image-wrap">
+              <img
+                src={nutritionImage}
+                alt="NutriFit Nutrition Label"
+                className="nutrition-image"
+              />
+            </div>
             <div className="nutrition-table-wrapper">
               <table className="nutrition-table">
                 <thead>

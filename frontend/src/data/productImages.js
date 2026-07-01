@@ -1,6 +1,9 @@
-/** Vite-bundled image URLs — always available after build (fixes Vercel 404 on /images/) */
+/** Vite-bundled image URLs from NutriFit Bharat brochure PDF */
+import heroMain from '../assets/images/hero-main.jpg';
 import heroProduct from '../assets/images/hero-product.jpg';
 import benefitsPage from '../assets/images/benefits-page.jpg';
+import brandBanner from '../assets/images/brand-banner.jpg';
+import texturesPage from '../assets/images/textures-page.jpg';
 import nutritionImage from '../assets/images/product-nutrition.jpg';
 import productSmooth from '../assets/images/product-smooth.jpg';
 import productCrunchy from '../assets/images/product-crunchy.jpg';
@@ -9,9 +12,16 @@ import productMango from '../assets/images/product-mango.jpg';
 import productChocolate from '../assets/images/product-chocolate.jpg';
 import productPreworkout from '../assets/images/product-preworkout.jpg';
 
-export { heroProduct, benefitsPage, nutritionImage };
+export {
+  heroMain,
+  heroProduct,
+  benefitsPage,
+  brandBanner,
+  texturesPage,
+  nutritionImage,
+};
 
-/** Map product IDs to bundled image URLs */
+/** Map product IDs to brochure image assets */
 export const productImageMap = {
   'pb-smooth-1kg': productSmooth,
   'pb-crunchy-1kg': productCrunchy,
