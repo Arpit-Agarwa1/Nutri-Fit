@@ -5,7 +5,14 @@ import {
 } from '../data/productStore.js';
 import { withProductImages } from '../data/productImages.js';
 
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+/** Ensure API base always ends with /api (handles Render URL with or without suffix) */
+const normalizeApiBase = (url) => {
+  if (!url) return '/api';
+  const trimmed = url.replace(/\/+$/, '');
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+};
+
+const API_BASE = normalizeApiBase(import.meta.env.VITE_API_URL);
 
 /**
  * Generic API fetch wrapper with static fallback support

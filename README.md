@@ -61,15 +61,38 @@ NutriFIt Store/
 npm run install:all
 ```
 
-### Production (Vercel)
+### Production (Vercel + Render)
 
-The site is configured for [Vercel](https://vercel.com) deployment at **https://nutri-fit-theta.vercel.app/**
+The app uses a split deployment:
 
-- `vercel.json` handles SPA routing (`/shop`, `/cart`, etc.)
-- `/api/*` serverless functions serve products, orders, and contact
-- Static product fallback ensures products always load even if API is slow
+| Platform | Role | URL |
+|----------|------|-----|
+| **Vercel** | React frontend (static SPA) | https://nutri-fit-theta.vercel.app |
+| **Render** | Express API + MongoDB | `https://<your-service>.onrender.com` |
 
-Push to `main` on GitHub to trigger auto-deploy.
+#### 1. Deploy API on Render
+
+1. Push to GitHub, then on [Render](https://render.com): **New → Blueprint** → select `Nutri-Fit`
+2. Set environment variables in the Render dashboard:
+
+| Variable | Value |
+|----------|-------|
+| `MONGODB_URI` | Your MongoDB Atlas connection string |
+| `FRONTEND_URL` | `https://nutri-fit-theta.vercel.app` |
+
+3. After deploy, copy your Render URL (e.g. `https://nutrifit-api.onrender.com`)
+
+#### 2. Connect Vercel to Render
+
+In the [Vercel project settings](https://vercel.com) → **Environment Variables**, add:
+
+| Variable | Value |
+|----------|-------|
+| `VITE_API_URL` | `https://<your-render-service>.onrender.com/api` |
+
+Redeploy Vercel after adding the variable. The frontend will call Render for all `/api/*` requests.
+
+Push to `main` on GitHub to trigger auto-deploy on both platforms.
 
 ### Development
 

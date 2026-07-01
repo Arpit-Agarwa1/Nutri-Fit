@@ -1,14 +1,7 @@
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import '../config/env.js';
 import connectDB from '../config/mongodb.js';
 import Product from '../schemas/Product.js';
 import { readData } from '../config/database.js';
-
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 /**
  * Seed products collection from products.json

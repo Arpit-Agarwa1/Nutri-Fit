@@ -1,10 +1,11 @@
-# Render Blueprint — https://render.com/docs/blueprint-spec
+# Render Blueprint — API backend only (frontend on Vercel)
+# https://render.com/docs/blueprint-spec
 services:
   - type: web
-    name: nutrifit-store
+    name: nutrifit-api
     runtime: node
     plan: free
-    buildCommand: npm run install:all && npm run build --prefix frontend
+    buildCommand: npm install --prefix backend
     startCommand: npm start --prefix backend
     healthCheckPath: /api/health
     envVars:
@@ -13,4 +14,6 @@ services:
       - key: NODE_VERSION
         value: "20"
       - key: MONGODB_URI
+        sync: false
+      - key: FRONTEND_URL
         sync: false
