@@ -1,0 +1,14 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: nutrifit-store
+    runtime: node
+    plan: free
+    buildCommand: npm run install:all && npm run build --prefix frontend
+    startCommand: npm start --prefix backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20

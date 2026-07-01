@@ -53,7 +53,11 @@ const ProductPage = () => {
         <div className="product-detail">
           <div className="product-image-section">
             <div className="product-image-large">
-              <span className="product-emoji-large">🥜</span>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="product-detail-img"
+              />
               {product.badge && <span className="detail-badge">{product.badge}</span>}
             </div>
           </div>

@@ -1,11 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 /** Main navigation bar */
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { cartCount } = useCart();
   const location = useLocation();
 
@@ -18,8 +19,14 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-inner">
         <Link to="/" className="navbar-logo" onClick={() => setMenuOpen(false)}>
           <img src="/logo.png" alt="NutriFit Bharat" />

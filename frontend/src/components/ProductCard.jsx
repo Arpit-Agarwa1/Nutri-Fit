@@ -5,8 +5,9 @@ import './ProductCard.css';
 /**
  * Reusable product card component
  * @param {Object} product - Product data from API
+ * @param {number} index - Stagger animation index
  */
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, index = 0 }) => {
   const { addToCart } = useCart();
 
   const textureColors = {
@@ -16,14 +17,17 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" style={{ animationDelay: `${index * 0.1}s` }}>
       <Link to={`/product/${product.slug}`} className="product-card-image">
-        <div className="product-placeholder">
-          <span className="product-emoji">🥜</span>
-          <span className={`badge ${textureColors[product.texture] || 'badge-green'}`}>
-            {product.texture}
-          </span>
-        </div>
+        <img
+          src={product.image}
+          alt={product.name}
+          className="product-img"
+          loading="lazy"
+        />
+        <span className={`badge ${textureColors[product.texture] || 'badge-green'}`}>
+          {product.texture}
+        </span>
         {product.badge && (
           <span className="product-card-badge">{product.badge}</span>
         )}

@@ -20,7 +20,7 @@
 }
 
 .product-image-large {
-  height: 450px;
+  min-height: 450px;
   background: linear-gradient(135deg, #fff5eb 0%, #f0f9f0 100%);
   border-radius: var(--radius-lg);
   display: flex;
@@ -28,10 +28,21 @@
   justify-content: center;
   position: relative;
   box-shadow: var(--shadow);
+  overflow: hidden;
+  padding: 24px;
 }
 
-.product-emoji-large {
-  font-size: 8rem;
+.product-detail-img {
+  max-height: 420px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius);
+  transition: transform 0.5s ease;
+}
+
+.product-image-large:hover .product-detail-img {
+  transform: scale(1.05);
 }
 
 .detail-badge {

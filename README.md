@@ -110,7 +110,7 @@ Open **http://localhost:3000** in your browser.
 
 ## Contact
 
-- **Email:** nutrifitbharat@gmail.com
+- **Email:** bharatnutrifit@gmail.com
 - **Phone:** +91 95092 01606
 - **Instagram:** @nutri.fitbharat
 - **Location:** Jaipur, Rajasthan, India

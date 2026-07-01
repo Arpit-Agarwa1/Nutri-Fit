@@ -1,3 +1,4 @@
+import AnimateOnScroll from '../AnimateOnScroll';
 import './WhyChooseUs.css';
 
 const benefits = [
@@ -16,18 +17,23 @@ const WhyChooseUs = () => {
   return (
     <section className="section why-section">
       <div className="container">
-        <h2 className="section-title">Why Thousands Choose NutriFit Bharat</h2>
-        <p className="section-subtitle">
-          We don&apos;t make ordinary peanut butter. We craft premium nutrition
-          that helps people eat healthier without compromising on taste.
-        </p>
+        <AnimateOnScroll animation="fade-up">
+          <h2 className="section-title">Why Thousands Choose NutriFit Bharat</h2>
+          <p className="section-subtitle">
+            We don&apos;t make ordinary peanut butter. We craft premium nutrition
+            that helps people eat healthier without compromising on taste.
+          </p>
+        </AnimateOnScroll>
+
         <div className="benefits-grid">
-          {benefits.map((item) => (
-            <div key={item.title} className="benefit-card">
-              <span className="benefit-icon">{item.icon}</span>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
+          {benefits.map((item, index) => (
+            <AnimateOnScroll key={item.title} animation="fade-up" delay={index * 80}>
+              <div className="benefit-card">
+                <span className="benefit-icon">{item.icon}</span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

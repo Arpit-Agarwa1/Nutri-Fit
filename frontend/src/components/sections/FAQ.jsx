@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AnimateOnScroll from '../AnimateOnScroll';
 import './FAQ.css';
 
 const faqs = [
@@ -35,29 +36,28 @@ const FAQ = () => {
   return (
     <section className="section faq-section">
       <div className="container">
-        <h2 className="section-title">Frequently Asked Questions</h2>
-        <p className="section-subtitle">
-          Got questions? We&apos;ve got answers.
-        </p>
+        <AnimateOnScroll animation="fade-up">
+          <h2 className="section-title">Frequently Asked Questions</h2>
+          <p className="section-subtitle">
+            Got questions? We&apos;ve got answers.
+          </p>
+        </AnimateOnScroll>
         <div className="faq-list">
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`faq-item ${openIndex === index ? 'open' : ''}`}
-            >
-              <button
-                className="faq-question"
-                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-              >
-                {faq.q}
-                <span className="faq-icon">{openIndex === index ? '−' : '+'}</span>
-              </button>
-              {openIndex === index && (
-                <div className="faq-answer">
+            <AnimateOnScroll key={index} animation="fade-up" delay={index * 60}>
+              <div className={`faq-item ${openIndex === index ? 'open' : ''}`}>
+                <button
+                  className="faq-question"
+                  onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+                >
+                  {faq.q}
+                  <span className="faq-icon">{openIndex === index ? '−' : '+'}</span>
+                </button>
+                <div className={`faq-answer ${openIndex === index ? 'open' : ''}`}>
                   <p>{faq.a}</p>
                 </div>
-              )}
-            </div>
+              </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

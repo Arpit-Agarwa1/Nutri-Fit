@@ -1,3 +1,4 @@
+import AnimateOnScroll from '../AnimateOnScroll';
 import './NutritionFacts.css';
 
 /** Nutrition facts table from brochure */
@@ -19,30 +20,41 @@ const NutritionFacts = () => {
   return (
     <section className="section nutrition-section">
       <div className="container">
-        <h2 className="section-title">Nutrition Facts</h2>
-        <p className="section-subtitle">
-          Serving Size: 32g per serving • 100% Premium Roasted Peanuts
-        </p>
-        <div className="nutrition-table-wrapper">
-          <table className="nutrition-table">
-            <thead>
-              <tr>
-                <th>Nutrient</th>
-                <th>Per Serving (32g)</th>
-                <th>Per 100g</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.label}>
-                  <td>{row.label}</td>
-                  <td>{row.serving}</td>
-                  <td>{row.per100}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <AnimateOnScroll animation="fade-up">
+          <h2 className="section-title">Nutrition Facts</h2>
+          <p className="section-subtitle">
+            Serving Size: 32g per serving • 100% Premium Roasted Peanuts
+          </p>
+        </AnimateOnScroll>
+        <AnimateOnScroll animation="scale" delay={150}>
+          <div className="nutrition-layout">
+            <img
+              src="/images/product-nutrition.png"
+              alt="NutriFit Nutrition Label"
+              className="nutrition-image"
+            />
+            <div className="nutrition-table-wrapper">
+              <table className="nutrition-table">
+                <thead>
+                  <tr>
+                    <th>Nutrient</th>
+                    <th>Per Serving (32g)</th>
+                    <th>Per 100g</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => (
+                    <tr key={row.label}>
+                      <td>{row.label}</td>
+                      <td>{row.serving}</td>
+                      <td>{row.per100}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

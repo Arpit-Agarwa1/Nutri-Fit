@@ -46,7 +46,7 @@ const Footer = () => {
           <div className="footer-contact">
             <h4>Contact Us</h4>
             <p>
-              <a href="mailto:nutrifitbharat@gmail.com">nutrifitbharat@gmail.com</a>
+              <a href="mailto:bharatnutrifit@gmail.com">bharatnutrifit@gmail.com</a>
             </p>
             <p>
               <a href="tel:+919509201606">+91 95092 01606</a>

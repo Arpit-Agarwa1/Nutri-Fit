@@ -9,6 +9,10 @@
   margin-bottom: 40px;
 }
 
+.products-grid > div {
+  height: 100%;
+}
+
 .featured-cta {
   text-align: center;
 }

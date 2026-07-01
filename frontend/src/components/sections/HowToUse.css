@@ -38,10 +38,23 @@
   font-size: 0.9rem;
 }
 
+.section-title-left {
+  text-align: left;
+}
+
+.section-subtitle-left {
+  text-align: left;
+  margin: 0 0 32px;
+}
+
 .audience-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.audience-tags > div {
+  display: inline-flex;
 }
 
 .audience-tag {

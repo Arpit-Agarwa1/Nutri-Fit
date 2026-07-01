@@ -1,10 +1,23 @@
 .nutrition-section {
-  background: white;
+  background: var(--gray-light);
+}
+
+.nutrition-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nutrition-image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .nutrition-table-wrapper {
-  max-width: 700px;
-  margin: 0 auto;
   overflow-x: auto;
 }
 
@@ -39,4 +52,10 @@
 .nutrition-table td:nth-child(3) {
   font-weight: 600;
   color: var(--orange);
+}
+
+@media (max-width: 768px) {
+  .nutrition-layout {
+    grid-template-columns: 1fr;
+  }
 }

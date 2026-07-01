@@ -49,7 +49,7 @@ const ContactPage = () => {
           <div className="info-card">
             <span className="info-icon">📧</span>
             <h3>Email</h3>
-            <a href="mailto:nutrifitbharat@gmail.com">nutrifitbharat@gmail.com</a>
+            <a href="mailto:bharatnutrifit@gmail.com">bharatnutrifit@gmail.com</a>
           </div>
           <div className="info-card">
             <span className="info-icon">📞</span>

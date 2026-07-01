@@ -1,3 +1,4 @@
+import AnimateOnScroll from '../AnimateOnScroll';
 import './HowToUse.css';
 
 const uses = [
@@ -26,27 +27,35 @@ const HowToUse = () => {
       <div className="container">
         <div className="how-grid">
           <div>
-            <h2 className="section-title" style={{ textAlign: 'left' }}>How To Use</h2>
-            <p className="section-subtitle" style={{ textAlign: 'left', margin: '0 0 32px' }}>
-              Versatile enough for every meal and snack
-            </p>
+            <AnimateOnScroll animation="fade-left">
+              <h2 className="section-title section-title-left">How To Use</h2>
+              <p className="section-subtitle section-subtitle-left">
+                Versatile enough for every meal and snack
+              </p>
+            </AnimateOnScroll>
             <div className="uses-grid">
-              {uses.map((item) => (
-                <div key={item.label} className="use-item">
-                  <span>{item.icon}</span>
-                  <p>{item.label}</p>
-                </div>
+              {uses.map((item, index) => (
+                <AnimateOnScroll key={item.label} animation="fade-up" delay={index * 50}>
+                  <div className="use-item">
+                    <span>{item.icon}</span>
+                    <p>{item.label}</p>
+                  </div>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
           <div>
-            <h2 className="section-title" style={{ textAlign: 'left' }}>Perfect For</h2>
-            <p className="section-subtitle" style={{ textAlign: 'left', margin: '0 0 32px' }}>
-              Whether your goal is weight loss, muscle gain, or clean eating
-            </p>
+            <AnimateOnScroll animation="fade-right">
+              <h2 className="section-title section-title-left">Perfect For</h2>
+              <p className="section-subtitle section-subtitle-left">
+                Whether your goal is weight loss, muscle gain, or clean eating
+              </p>
+            </AnimateOnScroll>
             <div className="audience-tags">
-              {audiences.map((item) => (
-                <span key={item} className="audience-tag">✔ {item}</span>
+              {audiences.map((item, index) => (
+                <AnimateOnScroll key={item} animation="scale" delay={index * 40}>
+                  <span className="audience-tag">✔ {item}</span>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
