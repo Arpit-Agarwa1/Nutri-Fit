@@ -44,7 +44,7 @@ const Hero = () => {
         <div className="hero-visual animate-bounce-in">
           <div className="hero-image-wrap animate-float-slow animate-pulse-glow">
             <img
-              src="/images/product-main.jpg"
+              src="/images/hero-product.jpg"
               alt="NutriFit Bharat Premium Peanut Butter"
               className="hero-product-img"
             />

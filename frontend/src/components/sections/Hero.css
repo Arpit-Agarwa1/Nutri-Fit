@@ -129,16 +129,17 @@
 .hero-image-wrap {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  max-width: 380px;
-  background: white;
-  padding: 12px;
+  max-width: 420px;
+  background: linear-gradient(160deg, #fff 0%, #fff9f5 100%);
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
 }
 
 .hero-product-img {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
