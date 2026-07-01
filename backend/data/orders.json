@@ -1,0 +1,29 @@
+[
+  {
+    "id": "b8796399-a259-4fed-8809-689d71933d09",
+    "customer": {
+      "name": "Test User",
+      "email": "test@test.com",
+      "phone": "9999999999"
+    },
+    "items": [
+      {
+        "productId": "pb-smooth-1kg",
+        "name": "Smooth Peanut Butter",
+        "price": 749,
+        "quantity": 1,
+        "subtotal": 749
+      }
+    ],
+    "shippingAddress": {
+      "address": "Test",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001"
+    },
+    "paymentMethod": "cod",
+    "total": 749,
+    "status": "pending",
+    "createdAt": "2026-07-01T10:02:00.570Z"
+  }
+]

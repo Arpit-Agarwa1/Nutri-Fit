@@ -1,0 +1,28 @@
+.problem-section {
+  padding: 60px 0;
+  background: var(--orange);
+  color: white;
+  text-align: center;
+}
+
+.problem-section h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.problem-section p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .problem-section h2 {
+    font-size: 1.5rem;
+  }
+}

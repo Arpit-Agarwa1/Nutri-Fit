@@ -1,0 +1,113 @@
+.about-page {
+  min-height: 70vh;
+}
+
+.about-hero {
+  background: linear-gradient(135deg, var(--orange) 0%, #ff6b00 100%);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.about-tagline {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+.about-content {
+  padding: 60px 20px 80px;
+}
+
+.about-section {
+  margin-bottom: 48px;
+}
+
+.about-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+
+.about-section p {
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.feature-tag {
+  background: var(--gray-light);
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--green-dark);
+}
+
+.helps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.help-item {
+  background: white;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-weight: 500;
+}
+
+.promise-section {
+  background: var(--gray-light);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.promise-card {
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
+.beliefs blockquote {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--blue);
+  font-style: italic;
+  border-left: 4px solid var(--orange);
+  padding-left: 24px;
+}
+
+.about-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .helps-grid,
+  .promise-grid {
+    grid-template-columns: 1fr;
+  }
+}

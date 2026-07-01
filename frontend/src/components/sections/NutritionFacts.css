@@ -1,0 +1,42 @@
+.nutrition-section {
+  background: white;
+}
+
+.nutrition-table-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.nutrition-table th {
+  background: var(--dark);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nutrition-table tbody tr:hover {
+  background: var(--gray-light);
+}
+
+.nutrition-table td:nth-child(2),
+.nutrition-table td:nth-child(3) {
+  font-weight: 600;
+  color: var(--orange);
+}

@@ -1,0 +1,32 @@
+.featured-section {
+  background: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.featured-cta {
+  text-align: center;
+}
+
+.error-msg {
+  text-align: center;
+  color: #e53935;
+  padding: 20px;
+}
+
+@media (max-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
