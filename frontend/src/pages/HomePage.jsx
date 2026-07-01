@@ -8,6 +8,7 @@ import NutritionFacts from '../components/sections/NutritionFacts';
 import FAQ from '../components/sections/FAQ';
 import CTA from '../components/sections/CTA';
 import AnimateOnScroll from '../components/AnimateOnScroll';
+import { benefitsPage, productImageMap } from '../data/productImages';
 import './HomePage.css';
 
 /** Landing page with all sections from brochure */
@@ -31,8 +32,8 @@ const HomePage = () => {
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-right">
             <div className="problem-image">
-              <img src="/images/product-smooth.jpg" alt="NutriFit Smooth Peanut Butter" />
-              <img src="/images/product-crunchy.jpg" alt="NutriFit Crunchy Peanut Butter" className="problem-img-secondary" />
+              <img src={productImageMap['pb-smooth-1kg']} alt="NutriFit Smooth Peanut Butter" />
+              <img src={productImageMap['pb-crunchy-1kg']} alt="NutriFit Crunchy Peanut Butter" className="problem-img-secondary" />
             </div>
           </AnimateOnScroll>
         </div>
@@ -45,7 +46,7 @@ const HomePage = () => {
       <section className="showcase-section">
         <div className="container showcase-grid">
           <AnimateOnScroll animation="fade-left">
-            <img src="/images/benefits-page.jpg" alt="NutriFit Bharat Benefits" className="showcase-img" />
+            <img src={benefitsPage} alt="NutriFit Bharat Benefits" className="showcase-img" />
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-right">
             <div className="showcase-content">

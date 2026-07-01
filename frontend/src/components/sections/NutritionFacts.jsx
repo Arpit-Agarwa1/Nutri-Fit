@@ -1,4 +1,5 @@
 import AnimateOnScroll from '../AnimateOnScroll';
+import { nutritionImage } from '../../data/productImages';
 import './NutritionFacts.css';
 
 /** Nutrition facts table from brochure */
@@ -29,7 +30,7 @@ const NutritionFacts = () => {
         <AnimateOnScroll animation="scale" delay={150}>
           <div className="nutrition-layout">
             <img
-              src="/images/product-nutrition.jpg"
+              src={nutritionImage}
               alt="NutriFit Nutrition Label"
               className="nutrition-image"
             />

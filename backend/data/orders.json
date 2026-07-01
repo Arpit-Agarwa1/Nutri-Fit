@@ -25,5 +25,32 @@
     "total": 749,
     "status": "pending",
     "createdAt": "2026-07-01T10:02:00.570Z"
+  },
+  {
+    "id": "35486252-09d2-44b4-9b1d-09c735978a92",
+    "customer": {
+      "name": "Arpit Agarwal",
+      "email": "arpitagarwal932@gmail.com",
+      "phone": "+919782042263"
+    },
+    "items": [
+      {
+        "productId": "pb-crunchy-1kg",
+        "name": "Crunchy Peanut Butter",
+        "price": 749,
+        "quantity": 1,
+        "subtotal": 749
+      }
+    ],
+    "shippingAddress": {
+      "address": "T-18/5 SHANTI PATH SANJAY COLONY RPA ROAD Panipetc",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302016"
+    },
+    "paymentMethod": "cod",
+    "total": 749,
+    "status": "pending",
+    "createdAt": "2026-07-01T10:41:14.485Z"
   }
 ]

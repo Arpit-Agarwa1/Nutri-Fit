@@ -123,7 +123,10 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  opacity: 0;
+}
+
+.hero-visual.animate-bounce-in {
+  opacity: 1;
 }
 
 .hero-image-wrap {

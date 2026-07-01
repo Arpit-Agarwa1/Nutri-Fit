@@ -3,6 +3,7 @@ import {
   getProductById,
   getProductBySlug,
 } from '../data/productStore.js';
+import { withProductImages } from '../data/productImages.js';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -47,28 +48,38 @@ export const productService = {
       apiFetch(`/products${query ? `?${query}` : ''}`)
     );
 
-    if (apiResult) return apiResult;
+    if (apiResult) {
+      return {
+        ...apiResult,
+        data: withProductImages(apiResult.data),
+        count: apiResult.data.length,
+      };
+    }
 
     const data = filterProducts(params);
-    return { success: true, data, count: data.length };
+    return { success: true, data: withProductImages(data), count: data.length };
   },
 
   getById: async (id) => {
     const apiResult = await tryApi(() => apiFetch(`/products/${id}`));
-    if (apiResult) return apiResult;
+    if (apiResult) {
+      return { success: true, data: withProductImages([apiResult.data])[0] };
+    }
 
     const product = getProductById(id);
     if (!product) throw new Error('Product not found');
-    return { success: true, data: product };
+    return { success: true, data: withProductImages([product])[0] };
   },
 
   getBySlug: async (slug) => {
     const apiResult = await tryApi(() => apiFetch(`/products/slug/${slug}`));
-    if (apiResult) return apiResult;
+    if (apiResult) {
+      return { success: true, data: withProductImages([apiResult.data])[0] };
+    }
 
     const product = getProductBySlug(slug);
     if (!product) throw new Error('Product not found');
-    return { success: true, data: product };
+    return { success: true, data: withProductImages([product])[0] };
   },
 };
 

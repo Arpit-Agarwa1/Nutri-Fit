@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { heroProduct } from '../../data/productImages';
 import './Hero.css';
 
 /** Hero section - main landing banner */
@@ -44,9 +45,11 @@ const Hero = () => {
         <div className="hero-visual animate-bounce-in">
           <div className="hero-image-wrap animate-float-slow animate-pulse-glow">
             <img
-              src="/images/hero-product.jpg"
+              src={heroProduct}
               alt="NutriFit Bharat Premium Peanut Butter"
               className="hero-product-img"
+              width={723}
+              height={920}
             />
           </div>
           <div className="hero-stats-float">
