@@ -61,6 +61,16 @@ NutriFIt Store/
 npm run install:all
 ```
 
+### Production (Vercel)
+
+The site is configured for [Vercel](https://vercel.com) deployment at **https://nutri-fit-theta.vercel.app/**
+
+- `vercel.json` handles SPA routing (`/shop`, `/cart`, etc.)
+- `/api/*` serverless functions serve products, orders, and contact
+- Static product fallback ensures products always load even if API is slow
+
+Push to `main` on GitHub to trigger auto-deploy.
+
 ### Development
 
 Run backend and frontend in separate terminals:

@@ -4,22 +4,23 @@ const CartContext = createContext(null);
 
 const CART_STORAGE_KEY = 'nutrifit_cart';
 
+/** Read saved cart from localStorage */
+const loadCartFromStorage = () => {
+  try {
+    const saved = localStorage.getItem(CART_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    localStorage.removeItem(CART_STORAGE_KEY);
+    return [];
+  }
+};
+
 /** Cart provider with localStorage persistence */
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(loadCartFromStorage);
   const [toast, setToast] = useState(null);
 
-  // Load cart from localStorage on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(CART_STORAGE_KEY);
-      if (saved) setCartItems(JSON.parse(saved));
-    } catch {
-      localStorage.removeItem(CART_STORAGE_KEY);
-    }
-  }, []);
-
-  // Persist cart to localStorage
+  // Persist cart to localStorage when it changes
   useEffect(() => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
   }, [cartItems]);

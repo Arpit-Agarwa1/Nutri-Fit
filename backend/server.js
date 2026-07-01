@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import productRoutes from './routes/productRoutes.js';
@@ -8,6 +9,7 @@ import contactRoutes from './routes/contactRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const frontendDist = path.join(__dirname, '../frontend/dist');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -30,6 +32,20 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// Serve built frontend and support client-side routing on refresh
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+
+  // SPA fallback — return index.html for non-API routes
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+}
 
 // 404 handler
 app.use((req, res) => {
