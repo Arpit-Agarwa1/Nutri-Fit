@@ -4,7 +4,8 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import connectDB, { isConnected } from './config/mongodb.js';
+import connectDB from './config/mongodb.js';
+import mongoose from 'mongoose';
 import { corsOptions } from './config/cors.js';
 import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
@@ -27,10 +28,14 @@ app.use('/api/contact', contactRoutes);
 
 /** Health check with database status */
 app.get('/api/health', (req, res) => {
+  const dbState = mongoose.connection.readyState;
+  const dbStatus =
+    dbState === 1 ? 'connected' : dbState === 2 ? 'connecting' : 'disconnected';
+
   res.json({
     success: true,
     message: 'NutriFit Bharat API is running',
-    database: isConnected() ? 'connected' : 'disconnected',
+    database: dbStatus,
     timestamp: new Date().toISOString(),
   });
 });

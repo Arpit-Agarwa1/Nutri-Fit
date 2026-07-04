@@ -2,6 +2,15 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "env": {
+    "VITE_API_URL": "https://nutri-fit-uhcp.onrender.com/api"
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://nutri-fit-uhcp.onrender.com/api/$1"
+    }
+  ],
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }

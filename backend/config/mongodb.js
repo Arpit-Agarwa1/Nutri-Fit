@@ -23,13 +23,23 @@ const connectDB = async () => {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(uri, {
-      bufferCommands: false,
-    });
+    cached.promise = mongoose
+      .connect(uri, {
+        bufferCommands: false,
+        serverSelectionTimeoutMS: 10000,
+      })
+      .then((conn) => {
+        console.log('MongoDB connected successfully');
+        return conn;
+      })
+      .catch((err) => {
+        cached.promise = null;
+        console.error('MongoDB connection failed:', err.message);
+        throw err;
+      });
   }
 
   cached.conn = await cached.promise;
-  console.log('MongoDB connected successfully');
   return cached.conn;
 };
 
